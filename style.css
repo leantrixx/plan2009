@@ -116,16 +116,16 @@ h1::after {
 .materia-card.bloqueada:hover .tooltip-text { visibility: visible; opacity: 1; }
 
 /* ==================================================================== */
-/* CELULAR: EL ENCAJE PERFECTO DEFINITIVO (v17)                         */
+/* CELULAR: EL ENCAJE PERFECTO (Tus estilos con el milímetro extra)     */
 /* ==================================================================== */
 @media(max-width:1024px) {
-  .main-container { width: 100%; padding: 0 2px; min-width: unset; }
-  h1 { font-size: 1.25rem; margin-bottom: 0; }
+  .main-container { width: 100%; padding: 2px 4px; min-width: unset; }
+  h1 { font-size: 1.4rem; margin-bottom: 0; }
   h1::after { margin: 1px auto; height: 1px; }
 
-  #estadisticas { flex-wrap: wrap; gap: 0; padding: 1px; margin-bottom: 0; }
-  .stat-item { flex: 1 1 30%; font-size: 0.58rem; text-align: center; margin: 0; }
-  .stat-item span { font-size: 0.7rem; }
+  #estadisticas { flex-wrap: wrap; gap: 2px; padding: 2px; margin-bottom: 2px; }
+  .stat-item { flex: 1 1 30%; font-size: 0.62rem; text-align: center; margin: 0; }
+  .stat-item span { font-size: 0.78rem; }
 
   #plan-de-estudios { display: flex; flex-direction: column; gap: 0; }
   
@@ -135,27 +135,25 @@ h1::after {
     width: 100% !important; margin: 0 !important;
   }
 
-  /* Márgenes de títulos de ciclo a cero */
-  .ciclo-subtitle { font-size: 0.75rem; margin: 0; letter-spacing: 1px; line-height: 1; }
+  .ciclo-subtitle { font-size: 0.85rem; margin: 2px 0; letter-spacing: 1px; }
 
-  /* Márgenes de columnas a cero */
-  .ciclo-column { margin-bottom: 0; padding: 1px 2px; border-radius: 4px; border: none; }
-  #col-clinico5, #col-clinico6 { border-radius: 4px !important; border: none !important; }
+  /* Le quitamos 1px al margen inferior de los ciclos para rascar espacio */
+  .ciclo-column { margin-bottom: 1px; padding: 2px 3px; border-radius: 4px; }
+  #col-clinico5, #col-clinico6 { border-radius: 4px !important; border: 1px solid var(--gold-12) !important; }
 
-  .ciclo-column h2 { font-size: 0.72rem; padding-bottom: 0; margin-bottom: 0; line-height: 1; border-bottom: 1px solid var(--gold-12); }
-  .numero-titulo { font-size: 0.72rem !important; }
-  .grado-titulo { font-size: 0.72rem !important; margin: 0 1px !important; }
+  .ciclo-column h2 { font-size: 0.8rem; padding-bottom: 1px; margin-bottom: 2px; }
+  .numero-titulo { font-size: 0.8rem !important; }
+  .grado-titulo { font-size: 0.8rem !important; margin: 0 2px !important; }
 
-  /* LA CLAVE: Sacamos el tope de min-height y forzamos un line-height apretado */
   .materias-container { gap: 0; }
   .materia-card { 
-      font-size: 0.56rem; 
-      padding: 0 2px;   
-      line-height: 1; 
-      min-height: 11px; /* 1.5px menos POR MATERIA = 75px de ahorro total */
+      font-size: 0.6rem; 
+      padding: 0 3px;   
+      line-height: 1.1; 
+      min-height: 12px; /* MAGIA: De 13px a 12px, ganamos 50px de pantalla */
       border-bottom: none; 
   }
-  .materia-nota { font-size: 0.62rem; margin-left: 2px; }
+  .materia-nota { font-size: 0.65rem; margin-left: 4px; }
   
   .materia-card.aprobada::before, .materia-card.regular::before { width: 1.5px; }
 }
