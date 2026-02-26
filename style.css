@@ -22,182 +22,126 @@ body {
   overflow-x: hidden;
 }
 
-.main-container {
-  width: 98%;
-  max-width: 1550px;
-  padding: 0.8rem 1.5rem;
-}
+.main-container { width: 98%; max-width: 1550px; padding: 0.8rem 1.5rem; }
 
 h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem; 
-  color: var(--gold);
-  text-align: center;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 3rem; 
+  color: var(--gold); text-align: center; font-weight: 700; margin-bottom: 0.2rem;
 }
 
 h1::after {
-  content: ''; display: block; width: 220px; height: 2px;
-  margin: 0.2rem auto 0.8rem;
+  content: ''; display: block; width: 220px; height: 2px; margin: 0.2rem auto 0.8rem;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 #estadisticas {
-  display: flex; justify-content: center; gap: 2rem;
-  margin-bottom: 0.8rem; font-size: 0.8rem;
-  font-weight: 600; color: var(--ink);
-  background: rgba(0, 0, 0, 0.2); 
-  border: 1px solid var(--gold-12);
-  padding: 0.5rem 2rem; 
-  border-radius: 8px;
+  display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; font-size: 0.85rem;
+  font-weight: 600; color: var(--ink); background: rgba(0, 0, 0, 0.2); 
+  border: 1px solid var(--gold-12); padding: 0.6rem 2rem; border-radius: 8px;
 }
 
-.stat-item span {
-  color: var(--gold); font-family: 'Inter', sans-serif;
-  font-size: 1.15rem; font-weight: 700; margin-left: 6px;
-}
+.stat-item span { color: var(--gold); font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700; margin-left: 6px; }
 
-#plan-de-estudios {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.8rem; 
-  align-items: start;
-}
+/* ==================================================================== */
+/* GRILLA PC                                                            */
+/* ==================================================================== */
+#plan-de-estudios { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; align-items: start; }
 
 .ciclo-subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  color: var(--gold);
-  font-size: 1.4rem; 
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.4rem; 
+  text-align: center; font-weight: 700; letter-spacing: 2px;
   display: flex; align-items: center; justify-content: center;
 }
-.ciclo-subtitle::before, .ciclo-subtitle::after {
-  content: ""; height: 1px; flex: 1; background: var(--gold-12); margin: 0 15px;
-}
+.ciclo-subtitle::before, .ciclo-subtitle::after { content: ""; height: 1px; flex: 1; background: var(--gold-12); margin: 0 15px; }
 
+/* COORDENADAS PC */
 #sub-biomedico  { grid-column: 2 / span 3; grid-row: 1; margin-bottom: -0.2rem; }
 #col-cbc        { grid-column: 1; grid-row: 2; }
 #col-biomedico1 { grid-column: 2; grid-row: 2; }
 #col-biomedico2 { grid-column: 3; grid-row: 2; }
 #col-biomedico3 { grid-column: 4; grid-row: 2; }
-
 #sub-clinico    { grid-column: 1 / span 4; grid-row: 3; margin-top: 0.8rem; margin-bottom: -0.2rem; }
 #col-clinico4   { grid-column: 1; grid-row: 4; }
 #col-iar        { grid-column: 4; grid-row: 4; }
-
 #col-clinico5_6 { grid-column: 2 / span 2; grid-row: 4; }
 #col-clinico5_6 .materias-container { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.8rem; }
+#col-clinico5 { grid-column: 2; grid-row: 4; margin-right: -0.8rem; border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 1px dashed var(--gold-12); z-index: 2; }
+#col-clinico6 { grid-column: 3; grid-row: 4; border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: none; }
 
-#col-clinico5 {
-  grid-column: 2; grid-row: 4;
-  margin-right: -0.8rem; 
-  border-top-right-radius: 0; border-bottom-right-radius: 0;
-  border-right: 1px dashed var(--gold-12); z-index: 2;
-}
-#col-clinico6 {
-  grid-column: 3; grid-row: 4;
-  border-top-left-radius: 0; border-bottom-left-radius: 0;
-  border-left: none;
-}
+.ciclo-column { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--gold-12); border-radius: 8px; padding: 0.5rem; }
 
-.ciclo-column {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--gold-12);
-  border-radius: 8px;
-  padding: 0.5rem; 
+/* ==================================================================== */
+/* TÍTULOS Y NÚMEROS: INTER (IGUAL A APROBADAS) Y EN BLANCO             */
+/* ==================================================================== */
+.ciclo-column h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem; color: #ffffff; text-align: center; font-weight: 700;
+  border-bottom: 1px solid var(--gold-12); padding-bottom: 0.3rem; margin-bottom: 0.5rem;
+  display: flex; justify-content: center; align-items: baseline;
 }
 
-.materias-container {
-  display: flex; flex-direction: column; gap: 0.2rem; 
-}
+.numero-titulo { font-family: 'Inter', sans-serif; font-weight: 700; color: #ffffff; font-size: 1.15rem; }
+.grado-titulo { font-family: 'Inter', sans-serif; font-size: 1.15rem; margin-left: 2px; margin-right: 5px; }
 
+/* ==================================================================== */
+/* MATERIAS Y CARTEL NEGRO                                              */
+/* ==================================================================== */
+.materias-container { display: flex; flex-direction: column; gap: 0.2rem; }
 .materia-card {
-  padding: 0.3rem 0.5rem; 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.35rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.74rem; font-weight: 400; cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   border-radius: 4px; transition: background 0.2s; position: relative;
 }
 
-.materia-nota {
-  font-family: 'Inter', sans-serif; font-weight: 700; color: var(--gold); font-size: 0.95rem;
-}
+.materia-nombre { flex-grow: 1; padding-right: 10px; line-height: 1.2; }
+.materia-nota { font-family: 'Inter', sans-serif; font-weight: 700; color: var(--gold); font-size: 0.95rem; flex-shrink: 0; }
 
 .materia-card:hover:not(.bloqueada) { background: rgba(212, 175, 55, 0.08); }
-
 .materia-card.aprobada { background: rgba(0,0,0,0.4); color: var(--gold); }
-.materia-card.aprobada::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  background: linear-gradient(180deg, var(--gold), #8c7425);
-  border-top-left-radius: 4px; border-bottom-left-radius: 4px;
-}
-
+.materia-card.aprobada::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--gold), #8c7425); }
 .materia-card.regular { background: rgba(0,0,0,0.4); color: #3cb179; }
-.materia-card.regular::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  background: linear-gradient(180deg, #3cb179, #2c8f65);
-  border-top-left-radius: 4px; border-bottom-left-radius: 4px;
-}
+.materia-card.regular::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #3cb179, #2c8f65); }
 
-.materia-card.bloqueada { opacity: 0.5; cursor: not-allowed; filter: grayscale(0.2); }
+.materia-card.bloqueada { cursor: not-allowed; }
+.materia-card.bloqueada .materia-nombre, .materia-card.bloqueada .materia-nota { opacity: 0.45; filter: grayscale(0.2); }
 
 .tooltip .tooltip-text {
   visibility: hidden; opacity: 0; width: 250px;
-  background: #030707; 
-  border: 1px solid var(--gold);
-  padding: 10px; position: absolute; bottom: 120%; left: 50%;
+  background: #000000;
+  border: 1px solid var(--gold); padding: 10px; position: absolute; bottom: 120%; left: 50%;
   transform: translateX(-50%); transition: 0.2s; border-radius: 8px;
   z-index: 9999; font-size: 0.75rem; color: #fff; pointer-events: none;
-  box-shadow: 0 8px 24px rgba(0,0,0,1);
+  box-shadow: 0 8px 24px rgba(0,0,0,1); line-height: 1.4;
 }
 .materia-card.bloqueada:hover .tooltip-text { visibility: visible; opacity: 1; }
 
 /* ==================================================================== */
-/* TÍTULOS DE AÑO: Ahora todo en Inter y Negrita                        */
-/* ==================================================================== */
-.ciclo-column h2 {
-  font-family: 'Inter', sans-serif; /* Cambiado a Inter */
-  font-size: 1.1rem; /* Mismo tamaño para todo */
-  color: #ffffff;
-  text-align: center;
-  font-weight: 700; 
-  border-bottom: 1px solid var(--gold-12);
-  padding-bottom: 0.3rem; margin-bottom: 0.5rem;
-}
-
-.numero-titulo {
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.grado-titulo {
-  margin-left: 3px; /* Espacio para separarlo del número */
-  margin-right: 5px; /* Espacio para separarlo de la palabra AÑO */
-}
-
-/* ==================================================================== */
-/* ADAPTACIÓN PARA CELULARES (RESPONSIVE)                               */
+/* ADAPTACIÓN PARA CELULARES (¡AQUÍ ESTABA EL ERROR!)                   */
 /* ==================================================================== */
 @media(max-width:1024px) {
+  /* 1. ROMPEMOS LA GRILLA Y APILAMOS TODO */
   #plan-de-estudios { 
     display: flex; 
     flex-direction: column; 
+    gap: 1.5rem; 
   }
+  
+  /* 2. LE BORRAMOS LAS COORDENADAS A TODAS LAS CAJAS */
+  #sub-biomedico, #col-cbc, #col-biomedico1, #col-biomedico2, #col-biomedico3, 
+  #sub-clinico, #col-clinico4, #col-clinico5, #col-clinico6, #col-iar {
+    grid-column: unset;
+    grid-row: unset;
+    width: 100%; /* Que ocupen todo el ancho del celu */
+  }
+
+  /* 3. Arreglamos 5to y 6to año para que se vean bien separados */
   #col-clinico5 { margin-right: 0; border-radius: 8px; border-right: 1px solid var(--gold-12); }
   #col-clinico6 { border-radius: 8px; border-left: 1px solid var(--gold-12); }
   
-  /* Ajuste de estadísticas en celular para que no se aplasten */
-  #estadisticas {
-    flex-wrap: wrap; /* Permite que los ítems bajen de línea si no entran */
-    gap: 1rem;
-    padding: 1rem;
-  }
-  .stat-item {
-    margin: 0.2rem 0;
-  }
+  /* 4. Ajuste de estadísticas */
+  #estadisticas { flex-wrap: wrap; gap: 0.8rem; padding: 1rem; text-align: center; }
+  .stat-item { flex: 1 1 auto; min-width: 100px; }
   
-  h1 { font-size: 2.2rem; } /* Título principal un poco más chico */
+  h1 { font-size: 2.2rem; }
 }
