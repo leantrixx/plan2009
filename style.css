@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap');
+
+:root {
+  --emerald-900: #0b2121;
+  --emerald-950: #081718;
+  --gold: #d4af37;
+  --gold-12: rgba(212, 175, 55, 0.15);
+  --ink: #e8eef4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background:
+    radial-gradient(1000px 600px at 50% 0%, rgba(212, 175, 55, 0.05), transparent 70%),
+    linear-gradient(180deg, var(--emerald-900), var(--emerald-950));
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.main-container {
+  width: 98%;
+  max-width: 1550px;
+  padding: 0.8rem 1.5rem;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; 
+  color: var(--gold);
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+h1::after {
+  content: ''; display: block; width: 220px; height: 2px;
+  margin: 0.2rem auto 0.8rem;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+#estadisticas {
+  display: flex; justify-content: center; gap: 2rem;
+  margin-bottom: 0.8rem; font-size: 0.8rem;
+  font-weight: 600; color: var(--ink);
+  background: rgba(0, 0, 0, 0.2); 
+  border: 1px solid var(--gold-12);
+  padding: 0.5rem 2rem; 
+  border-radius: 8px;
+}
+
+.stat-item span {
+  color: var(--gold); font-family: 'Inter', sans-serif;
+  font-size: 1.15rem; font-weight: 700; margin-left: 6px;
+}
+
+#plan-de-estudios {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem; 
+  align-items: start;
+}
+
+.ciclo-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--gold);
+  font-size: 1.4rem; 
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ciclo-subtitle::before, .ciclo-subtitle::after {
+  content: ""; height: 1px; flex: 1; background: var(--gold-12); margin: 0 15px;
+}
+
+#sub-biomedico  { grid-column: 2 / span 3; grid-row: 1; margin-bottom: -0.2rem; }
+#col-cbc        { grid-column: 1; grid-row: 2; }
+#col-biomedico1 { grid-column: 2; grid-row: 2; }
+#col-biomedico2 { grid-column: 3; grid-row: 2; }
+#col-biomedico3 { grid-column: 4; grid-row: 2; }
+
+#sub-clinico    { grid-column: 1 / span 4; grid-row: 3; margin-top: 0.8rem; margin-bottom: -0.2rem; }
+#col-clinico4   { grid-column: 1; grid-row: 4; }
+#col-iar        { grid-column: 4; grid-row: 4; }
+
+#col-clinico5_6 { grid-column: 2 / span 2; grid-row: 4; }
+#col-clinico5_6 .materias-container { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.8rem; }
+
+#col-clinico5 {
+  grid-column: 2; grid-row: 4;
+  margin-right: -0.8rem; 
+  border-top-right-radius: 0; border-bottom-right-radius: 0;
+  border-right: 1px dashed var(--gold-12); z-index: 2;
+}
+#col-clinico6 {
+  grid-column: 3; grid-row: 4;
+  border-top-left-radius: 0; border-bottom-left-radius: 0;
+  border-left: none;
+}
+
+.ciclo-column {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--gold-12);
+  border-radius: 8px;
+  padding: 0.5rem; 
+}
+
+.materias-container {
+  display: flex; flex-direction: column; gap: 0.2rem; 
+}
+
+.materia-card {
+  padding: 0.3rem 0.5rem; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.74rem; font-weight: 400; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  border-radius: 4px; transition: background 0.2s; position: relative;
+}
+
+.materia-nota {
+  font-family: 'Inter', sans-serif; font-weight: 700; color: var(--gold); font-size: 0.95rem;
+}
+
+.materia-card:hover:not(.bloqueada) { background: rgba(212, 175, 55, 0.08); }
+
+.materia-card.aprobada { background: rgba(0,0,0,0.4); color: var(--gold); }
+.materia-card.aprobada::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--gold), #8c7425);
+  border-top-left-radius: 4px; border-bottom-left-radius: 4px;
+}
+
+.materia-card.regular { background: rgba(0,0,0,0.4); color: #3cb179; }
+.materia-card.regular::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, #3cb179, #2c8f65);
+  border-top-left-radius: 4px; border-bottom-left-radius: 4px;
+}
+
+.materia-card.bloqueada { opacity: 0.5; cursor: not-allowed; filter: grayscale(0.2); }
+
+.tooltip .tooltip-text {
+  visibility: hidden; opacity: 0; width: 250px;
+  background: #030707; 
+  border: 1px solid var(--gold);
+  padding: 10px; position: absolute; bottom: 120%; left: 50%;
+  transform: translateX(-50%); transition: 0.2s; border-radius: 8px;
+  z-index: 9999; font-size: 0.75rem; color: #fff; pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,1);
+}
+.materia-card.bloqueada:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+/* ==================================================================== */
+/* TÍTULOS DE AÑO: Ahora todo en Inter y Negrita                        */
+/* ==================================================================== */
+.ciclo-column h2 {
+  font-family: 'Inter', sans-serif; /* Cambiado a Inter */
+  font-size: 1.1rem; /* Mismo tamaño para todo */
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700; 
+  border-bottom: 1px solid var(--gold-12);
+  padding-bottom: 0.3rem; margin-bottom: 0.5rem;
+}
+
+.numero-titulo {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.grado-titulo {
+  margin-left: 3px; /* Espacio para separarlo del número */
+  margin-right: 5px; /* Espacio para separarlo de la palabra AÑO */
+}
+
+/* ==================================================================== */
+/* ADAPTACIÓN PARA CELULARES (RESPONSIVE)                               */
+/* ==================================================================== */
+@media(max-width:1024px) {
+  #plan-de-estudios { 
+    display: flex; 
+    flex-direction: column; 
+  }
+  #col-clinico5 { margin-right: 0; border-radius: 8px; border-right: 1px solid var(--gold-12); }
+  #col-clinico6 { border-radius: 8px; border-left: 1px solid var(--gold-12); }
+  
+  /* Ajuste de estadísticas en celular para que no se aplasten */
+  #estadisticas {
+    flex-wrap: wrap; /* Permite que los ítems bajen de línea si no entran */
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .stat-item {
+    margin: 0.2rem 0;
+  }
+  
+  h1 { font-size: 2.2rem; } /* Título principal un poco más chico */
+}
