@@ -116,16 +116,16 @@ h1::after {
 .materia-card.bloqueada:hover .tooltip-text { visibility: visible; opacity: 1; }
 
 /* ==================================================================== */
-/* CELULAR: EL ENCAJE PERFECTO (Ahorrando 1 píxel por materia)          */
+/* CELULAR: EL ENCAJE PERFECTO DEFINITIVO (v16)                         */
 /* ==================================================================== */
 @media(max-width:1024px) {
-  .main-container { width: 100%; padding: 2px 4px; min-width: unset; }
-  h1 { font-size: 1.4rem; margin-bottom: 0; }
-  h1::after { margin: 2px auto; height: 1px; }
+  .main-container { width: 100%; padding: 1px 2px; min-width: unset; }
+  h1 { font-size: 1.3rem; margin-bottom: 0; }
+  h1::after { margin: 1px auto; height: 1px; }
 
-  #estadisticas { flex-wrap: wrap; gap: 2px; padding: 2px; margin-bottom: 2px; }
-  .stat-item { flex: 1 1 30%; font-size: 0.62rem; text-align: center; margin: 0; }
-  .stat-item span { font-size: 0.78rem; }
+  #estadisticas { flex-wrap: wrap; gap: 1px; padding: 2px; margin-bottom: 1px; }
+  .stat-item { flex: 1 1 30%; font-size: 0.6rem; text-align: center; margin: 0; }
+  .stat-item span { font-size: 0.75rem; }
 
   #plan-de-estudios { display: flex; flex-direction: column; gap: 0; }
   
@@ -135,23 +135,22 @@ h1::after {
     width: 100% !important; margin: 0 !important;
   }
 
-  /* Ahorro de 1px en cada subtítulo y columna */
-  .ciclo-subtitle { font-size: 0.85rem; margin: 2px 0; letter-spacing: 1px; }
+  .ciclo-subtitle { font-size: 0.8rem; margin: 1px 0; letter-spacing: 1px; }
 
-  .ciclo-column { margin-bottom: 2px; padding: 2px 3px; border-radius: 4px; }
+  .ciclo-column { margin-bottom: 1px; padding: 1px 2px; border-radius: 4px; }
   #col-clinico5, #col-clinico6 { border-radius: 4px !important; border: 1px solid var(--gold-12) !important; }
 
-  .ciclo-column h2 { font-size: 0.8rem; padding-bottom: 1px; margin-bottom: 2px; }
-  .numero-titulo { font-size: 0.8rem !important; }
-  .grado-titulo { font-size: 0.8rem !important; margin: 0 2px !important; }
+  .ciclo-column h2 { font-size: 0.75rem; padding-bottom: 1px; margin-bottom: 1px; }
+  .numero-titulo { font-size: 0.75rem !important; }
+  .grado-titulo { font-size: 0.75rem !important; margin: 0 2px !important; }
 
-  /* ACÁ ESTÁ LA MAGIA: 1 píxel menos de alto a las 50 materias = 50px ganados */
+  /* Reducimos 0.5px más la altura mínima para ganar esos 25px faltantes al final */
   .materias-container { gap: 0; }
   .materia-card { 
-      font-size: 0.6rem; 
-      padding: 0 3px;   /* Quitamos padding vertical */
+      font-size: 0.58rem; 
+      padding: 0 3px;   
       line-height: 1.1; 
-      min-height: 13px; /* 1 píxel menos que en el intento anterior */
+      min-height: 12.5px; /* Magia pura */
       border-bottom: none; 
   }
   .materia-nota { font-size: 0.65rem; margin-left: 4px; }
