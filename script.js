@@ -53,11 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         return false;
                 }
             });
-        },
-        calculateTotalSubjects: () => {
-            const totalMaterias = dataManager.getAll();
-            const rotacionesOpcionales = totalMaterias.filter(m => m.id.startsWith('rot_'));
-            return totalMaterias.length - rotacionesOpcionales.length + 4;
         }
     };
 
@@ -65,16 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
         render: () => {
             planContainer.innerHTML = '';
 
-            // Solo creamos el título de Biomédico al principio
-            const subBio = document.createElement('div');
-            subBio.className = 'ciclo-subtitle';
-            subBio.id = 'sub-biomedico';
-            subBio.innerHTML = 'CICLO BIOMÉDICO';
-            planContainer.appendChild(subBio);
-
             planDeEstudios.forEach(ciclo => {
-                // Inyectamos el título de Clínico justo antes de imprimir 4º Año
-                // Esto arregla el orden visual en celulares.
+                
+                // ORDEN CORRECTO: Biomédico justo antes de 1º Año (así CBC queda arriba)
+                if (ciclo.id === 'biomedico1') {
+                    const subBio = document.createElement('div');
+                    subBio.className = 'ciclo-subtitle';
+                    subBio.id = 'sub-biomedico';
+                    subBio.innerHTML = 'CICLO BIOMÉDICO';
+                    planContainer.appendChild(subBio);
+                }
+
+                // ORDEN CORRECTO: Clínico justo antes de 4º Año
                 if (ciclo.id === 'clinico4') {
                     const subClin = document.createElement('div');
                     subClin.className = 'ciclo-subtitle';
@@ -88,8 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 col.id = `col-${ciclo.id}`;
 
                 const materiasContainer = document.createElement('div');
-                materiasContainer.className = (ciclo.id === 'rotaciones') ? 'rotaciones-container' : 'materias-container';
+                materiasContainer.className = 'materias-container';
                 
+                // Formateo del título respetando el espacio del y 6
                 let tituloLimpio = ciclo.nombre.replace('Ciclo Biomédico - ', '').replace('Ciclo Clínico - ', '');
                 tituloLimpio = tituloLimpio.replace(/y\s*6/g, 'y 6'); 
                 const tituloProcesado = tituloLimpio.replace(/(\d+)(º)/g, '<span class="numero-titulo">$1</span><span class="grado-titulo">$2</span>');
@@ -104,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     materiaCard.className = `materia-card ${estadoVisual}`;
                     materiaCard.dataset.id = materia.id;
                     
-                    let cardHTML = `<span>${materia.nombre}</span>`;
+                    let cardHTML = `<span class="materia-nombre">${materia.nombre}</span>`;
                     if (materia.estado === 'aprobada' && materia.nota) {
                         cardHTML += `<span class="materia-nota">${materia.nota}</span>`;
                     }
@@ -114,13 +112,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         materiaCard.classList.add('tooltip');
                         let tooltipHTML = '<strong>Requiere para cursar:</strong><ul>';
                         materia.correlativas_cursar.forEach(req => {
-                            let reqNombre = (dataManager.getMateria(req.materia)?.nombre || req.materia).replace(/\s\([A-Z]\)$/, '');
-                             if (req.materia.startsWith('ciclo_') || req.materia === 'cbc' || req.materia === 'todo_aprobado') {
-                                reqNombre = req.materia.replace(/_/g, ' ').toUpperCase();
+                            let mReq = dataManager.getMateria(req.materia);
+                            let cumple = false;
+                            if (req.materia === 'cbc') cumple = cbcIds.every(id => dataManager.getMateria(id).estado === 'aprobada');
+                            else if (mReq) cumple = req.tipo === 'aprobada' ? mReq.estado === 'aprobada' : (mReq.estado === 'regular' || mReq.estado === 'aprobada');
+                            
+                            if (!cumple) {
+                                let reqNombre = mReq ? mReq.nombre : req.materia.replace(/_/g, ' ').toUpperCase();
+                                tooltipHTML += `<li>${reqNombre} (${req.tipo === 'regular' ? 'Regular' : 'Aprobada'})</li>`;
                             }
-                            tooltipHTML += `<li>${reqNombre} ${req.tipo === 'regular' ? 'Regular' : 'Aprobada'}</li>`;
                         });
                         tooltipHTML += '</ul>';
+                        if (tooltipHTML === '<strong>Requiere para cursar:</strong><ul></ul>') tooltipHTML = 'Faltan correlativas especiales.';
+
                         const tooltipText = document.createElement('div');
                         tooltipText.className = 'tooltip-text';
                         tooltipText.innerHTML = tooltipHTML;
@@ -154,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if(nodoSinCbc){ nodoSinCbc.textContent = promedioSinCbc; }
             
             let totalCarrera = 50; 
-            if(logicManager.calculateTotalSubjects) totalCarrera = logicManager.calculateTotalSubjects();
             document.getElementById('materias-progreso').textContent = `${aprobadas.length}/${totalCarrera}`;
         }
     };
