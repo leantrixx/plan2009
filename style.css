@@ -14,6 +14,7 @@ body {
   background:
     radial-gradient(1000px 600px at 50% 0%, rgba(212, 175, 55, 0.05), transparent 70%),
     linear-gradient(180deg, var(--emerald-900), var(--emerald-950));
+  background-attachment: fixed;
   color: var(--ink);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
@@ -22,7 +23,14 @@ body {
   overflow-x: hidden;
 }
 
-.main-container { width: 98%; max-width: 1550px; padding: 0.8rem 1.5rem; }
+/* Recuperamos el tamaño compacto para que no se vea gigante en PC */
+.main-container { 
+  width: 98%; 
+  min-width: 850px; 
+  max-width: 1550px; 
+  padding: 0.8rem 1.5rem; 
+  margin: 0 auto; 
+}
 
 h1 {
   font-family: 'Cormorant Garamond', serif; font-size: 3rem; 
@@ -34,27 +42,29 @@ h1::after {
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
+/* Achicamos padding y márgenes de estadísticas */
 #estadisticas {
-  display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; font-size: 0.85rem;
+  display: flex; justify-content: center; gap: 2rem; margin-bottom: 0.8rem; font-size: 0.85rem;
   font-weight: 600; color: var(--ink); background: rgba(0, 0, 0, 0.2); 
-  border: 1px solid var(--gold-12); padding: 0.6rem 2rem; border-radius: 8px;
+  border: 1px solid var(--gold-12); padding: 0.5rem 2rem; border-radius: 8px;
 }
 
 .stat-item span { color: var(--gold); font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700; margin-left: 6px; }
 
 /* ==================================================================== */
-/* GRILLA PC (4 COLUMNAS)                                               */
+/* LA GRILLA PERFECTA DE PC (INAMOVIBLE)                                */
 /* ==================================================================== */
 #plan-de-estudios { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; align-items: start; }
 
+/* Redujimos el margen de los subtítulos de nuevo */
 .ciclo-subtitle {
   font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.4rem; 
   text-align: center; font-weight: 700; letter-spacing: 2px;
   display: flex; align-items: center; justify-content: center;
+  margin: 0.8rem 0; 
 }
 .ciclo-subtitle::before, .ciclo-subtitle::after { content: ""; height: 1px; flex: 1; background: var(--gold-12); margin: 0 15px; }
 
-/* COORDENADAS PC */
 #sub-biomedico  { grid-column: 2 / span 3; grid-row: 1; margin-bottom: -0.2rem; }
 #col-cbc        { grid-column: 1; grid-row: 2; }
 #col-biomedico1 { grid-column: 2; grid-row: 2; }
@@ -71,24 +81,26 @@ h1::after {
 .ciclo-column { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--gold-12); border-radius: 8px; padding: 0.5rem; }
 
 /* ==================================================================== */
-/* TÍTULOS Y NÚMEROS: INTER Y BLANCO                                    */
+/* TÍTULOS Y NÚMEROS                                                    */
 /* ==================================================================== */
 .ciclo-column h2 {
   font-family: 'Inter', sans-serif;
-  font-size: 1.1rem; color: #ffffff; text-align: center; font-weight: 700;
+  font-size: 1.15rem; color: #ffffff; text-align: center; font-weight: 700;
   border-bottom: 1px solid var(--gold-12); padding-bottom: 0.3rem; margin-bottom: 0.5rem;
-  display: flex; justify-content: center; align-items: baseline;
 }
 
-.numero-titulo { font-family: 'Inter', sans-serif; font-weight: 700; color: #ffffff; font-size: 1.15rem; }
-.grado-titulo { font-family: 'Inter', sans-serif; font-size: 1.15rem; margin-left: 2px; margin-right: 5px; }
+.numero-titulo { font-family: 'Inter', sans-serif; font-weight: 700; color: #ffffff; }
+.grado-titulo { font-family: 'Inter', sans-serif; margin-left: 2px; margin-right: 4px; }
 
 /* ==================================================================== */
-/* MATERIAS Y CARTEL NEGRO OPADO                                        */
+/* MATERIAS Y CARTEL NEGRO ABSOLUTO                                     */
 /* ==================================================================== */
+/* Cajas de materias vuelven a ser sutiles */
 .materias-container { display: flex; flex-direction: column; gap: 0.2rem; }
+
 .materia-card {
-  padding: 0.35rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.3rem 0.5rem; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.74rem; font-weight: 400; cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   border-radius: 4px; transition: background 0.2s; position: relative;
@@ -112,50 +124,6 @@ h1::after {
   border: 1px solid var(--gold); padding: 10px; position: absolute; bottom: 120%; left: 50%;
   transform: translateX(-50%); transition: 0.2s; border-radius: 8px;
   z-index: 9999; font-size: 0.75rem; color: #fff; pointer-events: none;
-  box-shadow: 0 8px 24px rgba(0,0,0,1); line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0,0,0,1); line-height: 1.4; text-align: left;
 }
 .materia-card.bloqueada:hover .tooltip-text { visibility: visible; opacity: 1; }
-
-/* ==================================================================== */
-/* ADAPTACIÓN PARA CELULARES: GRILLA DE 2 COLUMNAS (CORREGIDA)          */
-/* ==================================================================== */
-@media(max-width:1024px) {
-  /* 1. Pasamos a 2 columnas para el celular */
-  #plan-de-estudios { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 0.8rem; 
-  }
-  
-  /* 2. FORZAMOS A QUE TODAS LAS CAJAS SE OLVIDEN DE SUS POSICIONES DE PC */
-  #sub-biomedico, #col-cbc, #col-biomedico1, #col-biomedico2, #col-biomedico3,
-  #sub-clinico, #col-clinico4, #col-clinico5, #col-clinico6, #col-iar, #col-clinico5_6 {
-    grid-column: auto !important;
-    grid-row: auto !important;
-    margin: 0 !important; 
-  }
-
-  /* 3. Los subtítulos ("CICLO...") ocupan todo el ancho (las 2 columnas) */
-  #sub-biomedico, #sub-clinico {
-    grid-column: 1 / -1 !important;
-    margin-top: 1rem !important;
-  }
-
-  /* 4. Arreglamos 5to y 6to año para que vuelvan a tener sus bordes normales */
-  #col-clinico5 { border-radius: 8px !important; border-right: 1px solid var(--gold-12) !important; margin-right: 0 !important; }
-  #col-clinico6 { border-radius: 8px !important; border-left: 1px solid var(--gold-12) !important; }
-  
-  /* 5. Ajuste para que las estadísticas no se aplasten */
-  #estadisticas { flex-wrap: wrap; gap: 0.6rem; padding: 0.8rem; justify-content: space-around; }
-  .stat-item { flex: 1 1 30%; min-width: 90px; text-align: center; }
-  
-  h1 { font-size: 2.2rem; }
-}
-
-/* Ajuste fino para celulares con pantalla muy angosta */
-@media(max-width:480px) {
-    .materia-card { font-size: 0.65rem; padding: 0.3rem 0.4rem; }
-    .ciclo-column h2 { font-size: 0.95rem; }
-    .numero-titulo, .grado-titulo { font-size: 1rem; }
-    .materia-nota { font-size: 0.85rem; }
-}
