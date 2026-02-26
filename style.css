@@ -23,14 +23,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Recuperamos el tamaño compacto para que no se vea gigante en PC */
-.main-container { 
-  width: 98%; 
-  min-width: 850px; 
-  max-width: 1550px; 
-  padding: 0.8rem 1.5rem; 
-  margin: 0 auto; 
-}
+.main-container { width: 98%; max-width: 1550px; padding: 0.8rem 1.5rem; margin: 0 auto; }
 
 h1 {
   font-family: 'Cormorant Garamond', serif; font-size: 3rem; 
@@ -42,7 +35,6 @@ h1::after {
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
-/* Achicamos padding y márgenes de estadísticas */
 #estadisticas {
   display: flex; justify-content: center; gap: 2rem; margin-bottom: 0.8rem; font-size: 0.85rem;
   font-weight: 600; color: var(--ink); background: rgba(0, 0, 0, 0.2); 
@@ -52,11 +44,10 @@ h1::after {
 .stat-item span { color: var(--gold); font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700; margin-left: 6px; }
 
 /* ==================================================================== */
-/* LA GRILLA PERFECTA DE PC (INAMOVIBLE)                                */
+/* LA GRILLA PERFECTA DE PC                                             */
 /* ==================================================================== */
 #plan-de-estudios { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; align-items: start; }
 
-/* Redujimos el margen de los subtítulos de nuevo */
 .ciclo-subtitle {
   font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.4rem; 
   text-align: center; font-weight: 700; letter-spacing: 2px;
@@ -65,6 +56,7 @@ h1::after {
 }
 .ciclo-subtitle::before, .ciclo-subtitle::after { content: ""; height: 1px; flex: 1; background: var(--gold-12); margin: 0 15px; }
 
+/* COORDENADAS PC */
 #sub-biomedico  { grid-column: 2 / span 3; grid-row: 1; margin-bottom: -0.2rem; }
 #col-cbc        { grid-column: 1; grid-row: 2; }
 #col-biomedico1 { grid-column: 2; grid-row: 2; }
@@ -81,26 +73,24 @@ h1::after {
 .ciclo-column { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--gold-12); border-radius: 8px; padding: 0.5rem; }
 
 /* ==================================================================== */
-/* TÍTULOS Y NÚMEROS                                                    */
+/* TÍTULOS Y NÚMEROS (AÑO en Cormorant, número en Inter)                */
 /* ==================================================================== */
 .ciclo-column h2 {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.15rem; color: #ffffff; text-align: center; font-weight: 700;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; color: #ffffff; text-align: center; font-weight: 600;
   border-bottom: 1px solid var(--gold-12); padding-bottom: 0.3rem; margin-bottom: 0.5rem;
 }
 
-.numero-titulo { font-family: 'Inter', sans-serif; font-weight: 700; color: #ffffff; }
-.grado-titulo { font-family: 'Inter', sans-serif; margin-left: 2px; margin-right: 4px; }
+.numero-titulo { font-family: 'Inter', sans-serif !important; font-weight: 700; color: #ffffff; }
+.grado-titulo { font-family: 'Inter', sans-serif !important; margin-left: 1px; margin-right: 3px; }
 
 /* ==================================================================== */
 /* MATERIAS Y CARTEL NEGRO ABSOLUTO                                     */
 /* ==================================================================== */
-/* Cajas de materias vuelven a ser sutiles */
 .materias-container { display: flex; flex-direction: column; gap: 0.2rem; }
 
 .materia-card {
-  padding: 0.3rem 0.5rem; 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.3rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.74rem; font-weight: 400; cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   border-radius: 4px; transition: background 0.2s; position: relative;
@@ -111,19 +101,67 @@ h1::after {
 
 .materia-card:hover:not(.bloqueada) { background: rgba(212, 175, 55, 0.08); }
 .materia-card.aprobada { background: rgba(0,0,0,0.4); color: var(--gold); }
-.materia-card.aprobada::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--gold), #8c7425); }
+.materia-card.aprobada::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--gold), #8c7425); border-radius: 4px 0 0 4px; }
 .materia-card.regular { background: rgba(0,0,0,0.4); color: #3cb179; }
-.materia-card.regular::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #3cb179, #2c8f65); }
+.materia-card.regular::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #3cb179, #2c8f65); border-radius: 4px 0 0 4px;}
 
 .materia-card.bloqueada { cursor: not-allowed; }
 .materia-card.bloqueada .materia-nombre, .materia-card.bloqueada .materia-nota { opacity: 0.45; filter: grayscale(0.2); }
 
 .tooltip .tooltip-text {
-  visibility: hidden; opacity: 0; width: 250px;
-  background: #000000;
+  visibility: hidden; opacity: 0; width: 250px; background: #000000;
   border: 1px solid var(--gold); padding: 10px; position: absolute; bottom: 120%; left: 50%;
   transform: translateX(-50%); transition: 0.2s; border-radius: 8px;
   z-index: 9999; font-size: 0.75rem; color: #fff; pointer-events: none;
   box-shadow: 0 8px 24px rgba(0,0,0,1); line-height: 1.4; text-align: left;
 }
 .materia-card.bloqueada:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+/* ==================================================================== */
+/* CELULAR: COMPRESIÓN MÁXIMA (TODO EN 1 COLUMNA HIPER COMPACTA)        */
+/* ==================================================================== */
+@media(max-width:1024px) {
+  /* Achicamos contenedor principal y título */
+  .main-container { width: 100%; padding: 4px 6px; min-width: unset; }
+  h1 { font-size: 1.6rem; margin-bottom: 2px; }
+  h1::after { margin: 2px auto 4px; }
+
+  /* Estadísticas mínimas */
+  #estadisticas { flex-wrap: wrap; gap: 2px; padding: 4px; margin-bottom: 4px; }
+  .stat-item { flex: 1 1 30%; font-size: 0.65rem; text-align: center; margin: 0; }
+  .stat-item span { font-size: 0.8rem; }
+
+  /* ROMPEMOS GRILLA: 1 Columna pura hacia abajo */
+  #plan-de-estudios { display: flex; flex-direction: column; gap: 0; }
+  
+  #sub-biomedico, #col-cbc, #col-biomedico1, #col-biomedico2, #col-biomedico3, 
+  #sub-clinico, #col-clinico4, #col-iar, #col-clinico5_6, #col-clinico5, #col-clinico6 {
+    grid-column: unset !important; grid-row: unset !important;
+    width: 100% !important; margin: 0 !important;
+  }
+
+  /* Subtítulos más chicos y juntos */
+  .ciclo-subtitle { font-size: 0.85rem; margin: 4px 0; }
+
+  /* Cajas de años con paddings minúsculos */
+  .ciclo-column { margin-bottom: 4px; padding: 2px 4px; border-radius: 4px; }
+  #col-clinico5, #col-clinico6 { border-radius: 4px !important; border: 1px solid var(--gold-12) !important; }
+
+  .ciclo-column h2 { font-size: 0.8rem; padding-bottom: 1px; margin-bottom: 2px; }
+  .numero-titulo { font-size: 0.8rem !important; }
+  .grado-titulo { font-size: 0.8rem !important; margin: 0 2px !important; }
+
+  /* MATERIAS EXTREMADAMENTE FINITAS PARA QUE ENTREN TODAS */
+  .materias-container { gap: 1px; }
+  .materia-card { 
+      font-size: 0.55rem; /* Letra super chiquita */
+      padding: 1px 3px;   /* Altura mínima de caja */
+      line-height: 1.1; 
+      min-height: 16px; 
+      border-bottom: none; 
+  }
+  .materia-nota { font-size: 0.65rem; }
+  
+  /* Hacemos la barrita de color más finita */
+  .materia-card.aprobada::before, .materia-card.regular::before { width: 2px; }
+}
