@@ -17,7 +17,7 @@ body {
   background-attachment: fixed;
   color: var(--ink);
   font-family: 'Inter', sans-serif;
-  min-height: 100vh;
+  min-height: 100dvh; 
   display: flex;
   justify-content: center;
   overflow-x: hidden;
@@ -72,10 +72,10 @@ h1::after {
 .ciclo-column { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--gold-12); border-radius: 8px; padding: 0.5rem; }
 
 /* ==================================================================== */
-/* TÍTULOS Y NÚMEROS: CORREGIDO A 'INTER' PARA "AÑO" Y EL "Y"           */
+/* TÍTULOS Y NÚMEROS                                                    */
 /* ==================================================================== */
 .ciclo-column h2 {
-  font-family: 'Inter', sans-serif; /* ACÁ ESTÁ EL CAMBIO */
+  font-family: 'Inter', sans-serif; /* AÑO en Inter */
   font-size: 1.15rem; color: #ffffff; text-align: center; font-weight: 700;
   border-bottom: 1px solid var(--gold-12); padding-bottom: 0.3rem; margin-bottom: 0.5rem;
 }
@@ -116,18 +116,47 @@ h1::after {
 .materia-card.bloqueada:hover .tooltip-text { visibility: visible; opacity: 1; }
 
 /* ==================================================================== */
-/* CELULAR: EL ENCAJE PERFECTO                                          */
+/* CELULAR: BLOQUEO DE PANTALLA Y AUTO-DISTRIBUCIÓN                     */
 /* ==================================================================== */
 @media(max-width:1024px) {
-  .main-container { width: 100%; padding: 2px 4px; min-width: unset; }
-  h1 { font-size: 1.4rem; margin-bottom: 0; }
-  h1::after { margin: 2px auto; height: 1px; }
+  /* MATA EL SCROLL COMPLETAMENTE */
+  html, body {
+    height: 100dvh;
+    overflow: hidden !important; /* Bloquea cualquier scroll fantasma */
+    margin: 0;
+    padding: 0;
+  }
 
-  #estadisticas { flex-wrap: wrap; gap: 2px; padding: 2px; margin-bottom: 2px; }
+  /* Convierte la caja principal en una columna rígida del tamaño exacto de la pantalla */
+  .main-container { 
+    height: 100dvh; 
+    width: 100%; 
+    padding: 4px 4px 8px 4px; /* Un pelito extra de padding abajo por seguridad */
+    min-width: unset; 
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Elementos de arriba rígidos */
+  h1 { font-size: 1.4rem; margin-bottom: 0; flex-shrink: 0; }
+  h1::after { margin: 1px auto; height: 1px; flex-shrink: 0; }
+
+  #estadisticas { 
+    flex-shrink: 0;
+    flex-wrap: wrap; gap: 2px; padding: 2px; margin-bottom: 2px; 
+  }
   .stat-item { flex: 1 1 30%; font-size: 0.62rem; text-align: center; margin: 0; }
   .stat-item span { font-size: 0.78rem; }
 
-  #plan-de-estudios { display: flex; flex-direction: column; gap: 0; }
+  /* MAGIA FLEXBOX: Este contenedor va a "absorber" todo el espacio sobrante */
+  /* y lo va a repartir parejo entre los años para que encaje perfecto abajo */
+  #plan-de-estudios { 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; /* Distribuye el espacio sobrante automáticamente */
+    gap: 0; 
+  }
   
   #sub-biomedico, #col-cbc, #col-biomedico1, #col-biomedico2, #col-biomedico3, 
   #sub-clinico, #col-clinico4, #col-iar, #col-clinico5_6, #col-clinico5, #col-clinico6 {
@@ -135,9 +164,9 @@ h1::after {
     width: 100% !important; margin: 0 !important;
   }
 
-  .ciclo-subtitle { font-size: 0.85rem; margin: 2px 0; letter-spacing: 1px; }
+  .ciclo-subtitle { font-size: 0.85rem; margin: 0; letter-spacing: 1px; }
 
-  .ciclo-column { margin-bottom: 1px; padding: 2px 3px; border-radius: 4px; }
+  .ciclo-column { margin-bottom: 0; padding: 2px 3px; border-radius: 4px; }
   #col-clinico5, #col-clinico6 { border-radius: 4px !important; border: 1px solid var(--gold-12) !important; }
 
   .ciclo-column h2 { font-size: 0.8rem; padding-bottom: 1px; margin-bottom: 2px; }
@@ -149,7 +178,7 @@ h1::after {
       font-size: 0.6rem; 
       padding: 0 3px;   
       line-height: 1.1; 
-      min-height: 12px; 
+      min-height: 12.5px; 
       border-bottom: none; 
   }
   .materia-nota { font-size: 0.65rem; margin-left: 4px; }
