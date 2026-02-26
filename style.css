@@ -56,7 +56,6 @@ h1::after {
 }
 .ciclo-subtitle::before, .ciclo-subtitle::after { content: ""; height: 1px; flex: 1; background: var(--gold-12); margin: 0 15px; }
 
-/* COORDENADAS PC */
 #sub-biomedico  { grid-column: 2 / span 3; grid-row: 1; margin-bottom: -0.2rem; }
 #col-cbc        { grid-column: 1; grid-row: 2; }
 #col-biomedico1 { grid-column: 2; grid-row: 2; }
@@ -73,14 +72,13 @@ h1::after {
 .ciclo-column { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--gold-12); border-radius: 8px; padding: 0.5rem; }
 
 /* ==================================================================== */
-/* TÍTULOS Y NÚMEROS (AÑO en Cormorant, número en Inter)                */
+/* TÍTULOS Y NÚMEROS                                                    */
 /* ==================================================================== */
 .ciclo-column h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.15rem; color: #ffffff; text-align: center; font-weight: 600;
   border-bottom: 1px solid var(--gold-12); padding-bottom: 0.3rem; margin-bottom: 0.5rem;
 }
-
 .numero-titulo { font-family: 'Inter', sans-serif !important; font-weight: 700; color: #ffffff; }
 .grado-titulo { font-family: 'Inter', sans-serif !important; margin-left: 1px; margin-right: 3px; }
 
@@ -118,20 +116,17 @@ h1::after {
 .materia-card.bloqueada:hover .tooltip-text { visibility: visible; opacity: 1; }
 
 /* ==================================================================== */
-/* CELULAR: COMPRESIÓN MÁXIMA (TODO EN 1 COLUMNA HIPER COMPACTA)        */
+/* CELULAR: EL ENCAJE PERFECTO (Ahorrando 1 píxel por materia)          */
 /* ==================================================================== */
 @media(max-width:1024px) {
-  /* Achicamos contenedor principal y título */
-  .main-container { width: 100%; padding: 4px 6px; min-width: unset; }
-  h1 { font-size: 1.6rem; margin-bottom: 2px; }
-  h1::after { margin: 2px auto 4px; }
+  .main-container { width: 100%; padding: 2px 4px; min-width: unset; }
+  h1 { font-size: 1.4rem; margin-bottom: 0; }
+  h1::after { margin: 2px auto; height: 1px; }
 
-  /* Estadísticas mínimas */
-  #estadisticas { flex-wrap: wrap; gap: 2px; padding: 4px; margin-bottom: 4px; }
-  .stat-item { flex: 1 1 30%; font-size: 0.65rem; text-align: center; margin: 0; }
-  .stat-item span { font-size: 0.8rem; }
+  #estadisticas { flex-wrap: wrap; gap: 2px; padding: 2px; margin-bottom: 2px; }
+  .stat-item { flex: 1 1 30%; font-size: 0.62rem; text-align: center; margin: 0; }
+  .stat-item span { font-size: 0.78rem; }
 
-  /* ROMPEMOS GRILLA: 1 Columna pura hacia abajo */
   #plan-de-estudios { display: flex; flex-direction: column; gap: 0; }
   
   #sub-biomedico, #col-cbc, #col-biomedico1, #col-biomedico2, #col-biomedico3, 
@@ -140,28 +135,26 @@ h1::after {
     width: 100% !important; margin: 0 !important;
   }
 
-  /* Subtítulos más chicos y juntos */
-  .ciclo-subtitle { font-size: 0.85rem; margin: 4px 0; }
+  /* Ahorro de 1px en cada subtítulo y columna */
+  .ciclo-subtitle { font-size: 0.85rem; margin: 2px 0; letter-spacing: 1px; }
 
-  /* Cajas de años con paddings minúsculos */
-  .ciclo-column { margin-bottom: 4px; padding: 2px 4px; border-radius: 4px; }
+  .ciclo-column { margin-bottom: 2px; padding: 2px 3px; border-radius: 4px; }
   #col-clinico5, #col-clinico6 { border-radius: 4px !important; border: 1px solid var(--gold-12) !important; }
 
   .ciclo-column h2 { font-size: 0.8rem; padding-bottom: 1px; margin-bottom: 2px; }
   .numero-titulo { font-size: 0.8rem !important; }
   .grado-titulo { font-size: 0.8rem !important; margin: 0 2px !important; }
 
-  /* MATERIAS EXTREMADAMENTE FINITAS PARA QUE ENTREN TODAS */
-  .materias-container { gap: 1px; }
+  /* ACÁ ESTÁ LA MAGIA: 1 píxel menos de alto a las 50 materias = 50px ganados */
+  .materias-container { gap: 0; }
   .materia-card { 
-      font-size: 0.55rem; /* Letra super chiquita */
-      padding: 1px 3px;   /* Altura mínima de caja */
+      font-size: 0.6rem; 
+      padding: 0 3px;   /* Quitamos padding vertical */
       line-height: 1.1; 
-      min-height: 16px; 
+      min-height: 13px; /* 1 píxel menos que en el intento anterior */
       border-bottom: none; 
   }
-  .materia-nota { font-size: 0.65rem; }
+  .materia-nota { font-size: 0.65rem; margin-left: 4px; }
   
-  /* Hacemos la barrita de color más finita */
-  .materia-card.aprobada::before, .materia-card.regular::before { width: 2px; }
+  .materia-card.aprobada::before, .materia-card.regular::before { width: 1.5px; }
 }
